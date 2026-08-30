@@ -3,15 +3,15 @@ class SegmentTree:
         self._op = op
         self._e = e
         is_int = isinstance(len_or_array, int)
-        self._n = len_or_array if is_int else len(len_or_array)
-        self._size = 1 << (self._n - 1).bit_length()
+        n = len_or_array if is_int else len(len_or_array)
+        self._size = 1 << (n - 1).bit_length()
         self._tree = [self._e] * (self._size << 1)
         if not is_int:
             self._build(len_or_array)
 
     def _build(self, array):
-        for i in range(self._n):
-            self._tree[self._size + i] = array[i]
+        for i, a in enumerate(array):
+            self._tree[self._size + i] = a
         for i in range(self._size - 1, 0, -1):
             self._tree[i] = self._op(self._tree[i << 1], self._tree[i << 1 | 1])
 
