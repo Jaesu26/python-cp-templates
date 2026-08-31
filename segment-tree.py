@@ -11,7 +11,7 @@ class SegmentTree:
 
     def _build(self, array):
         for i, a in enumerate(array):
-            self._tree[self._size + i] = a
+            self._tree[i + self._size] = a
         for i in range(self._size - 1, 0, -1):
             self._tree[i] = self._op(self._tree[i << 1], self._tree[i << 1 | 1])
 
