@@ -20,5 +20,8 @@ class DisjointSet:
             self._parents[u] = self.find(p_u)
         return self._parents[u]
 
+    def is_connected(self, u, v):
+        return self.find(u) == self.find(v)
+
     def get_size_of(self, u):
         return self._sizes[self.find(u)]
