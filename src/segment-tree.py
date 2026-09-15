@@ -15,6 +15,9 @@ class SegmentTree:
         for i in range(self._size - 1, 0, -1):
             self._tree[i] = self._op(self._tree[i << 1], self._tree[i << 1 | 1])
 
+    def get(self, index):
+        return self._tree[index + self._size]
+
     def update(self, index, value):
         i = index + self._size
         self._tree[i] = value
