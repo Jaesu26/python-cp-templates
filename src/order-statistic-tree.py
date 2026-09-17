@@ -22,10 +22,10 @@ class OrderStatisticTree:
     def count(self, x):
         return self._tree[x + self._size]
 
-    def update(self, x, diff):
+    def add(self, x, delta):
         i = x + self._size
         while i:
-            self._tree[i] += diff
+            self._tree[i] += delta
             i >>= 1
 
     def find_kth(self, k):
