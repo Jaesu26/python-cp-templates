@@ -1,13 +1,13 @@
 class SegmentTree:
-    def __init__(self, len_or_array, op, e):
+    def __init__(self, size_or_array, op, e):
         self._op = op
         self._e = e
-        is_int = isinstance(len_or_array, int)
-        n = len_or_array if is_int else len(len_or_array)
+        is_int = isinstance(size_or_array, int)
+        n = size_or_array if is_int else len(size_or_array)
         self._size = 1 << (n - 1).bit_length()
         self._tree = [self._e] * (self._size << 1)
         if not is_int:
-            self._build(len_or_array)
+            self._build(size_or_array)
 
     def _build(self, array):
         for i, a in enumerate(array):
