@@ -10,8 +10,8 @@ class OrderStatisticTree:
             self._build(max_value_or_counts)
 
     def _build(self, array):
-        for i, a in enumerate(array):
-            self._tree[i + self._size] = a
+        for i, a in enumerate(array, start=self._size):
+            self._tree[i] = a
         for i in range(self._size - 1, 0, -1):
             self._tree[i] = self._tree[i << 1] + self._tree[i << 1 | 1]
 
