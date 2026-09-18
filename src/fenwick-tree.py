@@ -8,10 +8,10 @@ class FenwickTree:
 
     def _build(self, array):
         for i, a in enumerate(array, start=1):
-            self._tree[i] = a
+            self._tree[i] += a
             j = i + (i & -i)
             if j <= self._size:
-                self._tree[j] += a
+                self._tree[j] += self._tree[i]
 
     def add(self, index, delta):
         i = index + 1
