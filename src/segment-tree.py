@@ -5,7 +5,7 @@ class SegmentTree:
         is_int = isinstance(size_or_array, int)
         n = size_or_array if is_int else len(size_or_array)
         self._size = 1 << (n - 1).bit_length()
-        self._tree = [self._e] * (self._size << 1)
+        self._tree = [e] * (self._size << 1)
         if not is_int:
             self._build(size_or_array)
 
