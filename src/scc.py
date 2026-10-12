@@ -3,11 +3,13 @@ def find_strongly_connected_components(graph):
     indices = [0] * n
     on_stack = [False] * n
     stack = []
-    sccs = []
     timer = 0
+    sccs = []
+    scc_ids = [0] * n
+    id_ = 0
 
     def dfs(u):
-        nonlocal timer
+        nonlocal timer, id_
         timer += 1
         low = indices[u] = timer
         on_stack[u] = True
@@ -23,15 +25,17 @@ def find_strongly_connected_components(graph):
                 node = stack.pop()
                 on_stack[node] = False
                 scc.append(node)
+                scc_ids[node] = id_
                 if node == u:
                     break
             sccs.append(scc)
+            id_ += 1
         return low
 
     for u in range(n):
         if indices[u] == 0:
             dfs(u)
-    return sccs
+    return sccs, scc_ids
 
 
 def build_condensation_graph(graph, sccs, scc_ids):
