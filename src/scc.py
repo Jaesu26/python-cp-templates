@@ -32,3 +32,12 @@ def find_strongly_connected_components(graph):
         if indices[u] == 0:
             dfs(u)
     return sccs
+
+
+def build_condensation_graph(graph, sccs, scc_ids):
+    dag = [set() for _ in sccs]
+    for u, neighbors in enumerate(graph):
+        i = scc_ids[u]
+        dag[i].update(j for v in neighbors if (j := scc_ids[v]) != i)
+    dag = [list(adj) for adj in dag]
+    return dag
