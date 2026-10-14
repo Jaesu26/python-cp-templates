@@ -7,9 +7,9 @@ def find_strongly_connected_components(graph):
     while stack:
         u = stack.pop()
         if u < 0:
-            u = ~u
-            if u != P[-1]:
+            if ~u != P[-1]:
                 continue
+            u = P.pop()
             scc = []
             while True:
                 node = S.pop()
@@ -18,7 +18,6 @@ def find_strongly_connected_components(graph):
                 if node == u:
                     break
             sccs.append(scc)
-            P.pop()
         elif indices[u] == -1:
             indices[u] = len(S)
             S.append(u)
